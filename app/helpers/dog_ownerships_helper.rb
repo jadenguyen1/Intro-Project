@@ -1,0 +1,2 @@
+module DogOwnershipsHelper
+end

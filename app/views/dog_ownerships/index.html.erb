@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Dog ownerships" %>
+
+<h1>Dog ownerships</h1>
+
+<div id="dog_ownerships">
+  <% @dog_ownerships.each do |dog_ownership| %>
+    <%= render dog_ownership %>
+    <p>
+      <%= link_to "Show this dog ownership", dog_ownership %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New dog ownership", new_dog_ownership_path %>

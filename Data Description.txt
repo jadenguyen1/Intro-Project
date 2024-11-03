@@ -1,0 +1,16 @@
+The data sources will be created by me in an excel sheet and exported to csv files. These will be
+accessed by the seeds.rb file and added to the database using models with preexisting associations.
+
+The data will be a mockup of a vet system with 6 tables in total, two of which will be to join
+many-to-many relationships. The tables will include Cats, Dogs, Owners, and Vets.
+
+Vets have a one-to-many association with owners (One vet, many owners). Cats and Dogs have many-to-
+many relationships with Owners (An owner may have more than one pet, pets may have more than one owner).
+These many-to-many associations will be fixed with joiner tables, Cat_Ownership and Dog_Ownership.
+
+
+
+Cats and Dogs will have their age and breed as columns. Owners will have their name and address as columns.
+Vets will have their last and location as columns.
+Cat and Dog Ownership will include the ids of the cat/dog and their owner.
+Every table will have a unique id labelled id.

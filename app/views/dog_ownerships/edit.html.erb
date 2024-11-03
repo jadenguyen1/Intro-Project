@@ -1,0 +1,12 @@
+<% content_for :title, "Editing dog ownership" %>
+
+<h1>Editing dog ownership</h1>
+
+<%= render "form", dog_ownership: @dog_ownership %>
+
+<br>
+
+<div>
+  <%= link_to "Show this dog ownership", @dog_ownership %> |
+  <%= link_to "Back to dog ownerships", dog_ownerships_path %>
+</div>
