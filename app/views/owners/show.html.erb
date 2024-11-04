@@ -1,10 +1,43 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @owner %>
+<div class="container my-4">
+  <h1 class="text-center mb-4"><%= @owner.name %></h1>
 
-<div>
-  <%= link_to "Edit this owner", edit_owner_path(@owner) %> |
-  <%= link_to "Back to owners", owners_path %>
+  <div id="<%= dom_id @owner %>" class="card">
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Address:</strong> <%= @owner.address %><br>
+      </p>
+      <p class="card-text">
+        <strong>Vet:</strong>
+        <% if @owner.vet %>
+          <%= link_to @owner.vet.name, vet_path(@owner.vet), class: "text-decoration-none" %>
+        <% else %>
+          No vet assigned
+        <% end %>
+      </p>
 
-  <%= button_to "Destroy this owner", @owner, method: :delete %>
+      <p class="card-text">
+        <strong>Cats:</strong>
+        <% if @owner.cats.any? %>
+          <%= @owner.cats.map { |cat| link_to cat.name, cat_path(cat), class: "text-decoration-none" }.join(", ").html_safe %>
+        <% else %>
+          No cats owned
+        <% end %>
+      </p>
+
+      <p class="card-text">
+        <strong>Dogs:</strong>
+        <% if @owner.dogs.any? %>
+          <%= @owner.dogs.map { |dog| link_to dog.name, dog_path(dog), class: "text-decoration-none" }.join(", ").html_safe %>
+        <% else %>
+          No dogs owned
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to "Back to Owners", owners_path, class: "btn btn-secondary" %>
+  </div>
 </div>

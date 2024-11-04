@@ -2,15 +2,50 @@
 
 <% content_for :title, "Owners" %>
 
-<h1>Owners</h1>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Owners</h1>
 
-<div id="owners">
-  <% @owners.each do |owner| %>
-    <%= render owner %>
-    <p>
-      <%= link_to "Show this owner", owner %>
-    </p>
-  <% end %>
+  <div class="row">
+    <% @owners.each do |owner| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Name:</strong> <%= owner.name %></h5>
+            <p class="card-text"><strong>Address:</strong> <%= owner.address %></p>
+
+            <p class="card-text">
+              <strong>Vet:</strong>
+              <% if owner.vet %>
+                <%= link_to owner.vet.name, vet_path(owner.vet), class: "text-primary" %>
+              <% else %>
+                <span class="text-muted">No vet assigned</span>
+              <% end %>
+            </p>
+
+            <p class="card-text">
+              <strong>Cats:</strong>
+              <% if owner.cats.any? %>
+                <%= owner.cats.map { |cat| link_to cat.name, cat_path(cat), class: "text-primary" }.join(", ").html_safe %>
+              <% else %>
+                <span class="text-muted">No cats owned</span>
+              <% end %>
+            </p>
+
+            <p class="card-text">
+              <strong>Dogs:</strong>
+              <% if owner.dogs.any? %>
+                <%= owner.dogs.map { |dog| link_to dog.name, dog_path(dog), class: "text-primary" }.join(", ").html_safe %>
+              <% else %>
+                <span class="text-muted">No dogs owned</span>
+              <% end %>
+            </p>
+
+            <p>
+              <%= link_to "Show this owner", owner, class: "btn btn-outline-primary mt-3" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New owner", new_owner_path %>

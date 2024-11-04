@@ -1,10 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @vet %>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Dr. <%= @vet.name %></h1>
 
-<div>
-  <%= link_to "Edit this vet", edit_vet_path(@vet) %> |
-  <%= link_to "Back to vets", vets_path %>
+  <div id="<%= dom_id @vet %>" class="card">
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Clinic Address:</strong> <%= @vet.clinic_address %>
+      </p>
 
-  <%= button_to "Destroy this vet", @vet, method: :delete %>
+      <p class="card-text">
+        <strong>Owners:</strong>
+        <% if @vet.owners.any? %>
+          <ul>
+            <% @vet.owners.each do |owner| %>
+              <li>
+                <%= link_to owner.name, owner_path(owner), class: "text-decoration-none" %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          No owners assigned
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to "Back to Vets", vets_path, class: "btn btn-secondary" %>
+  </div>
 </div>

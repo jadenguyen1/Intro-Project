@@ -1,6 +1,7 @@
 <div id="<%= dom_id vet %>">
   <p>
     <strong>Name:</strong>
+    Dr:
     <%= vet.name %>
   </p>
 
@@ -8,5 +9,20 @@
     <strong>Clinic address:</strong>
     <%= vet.clinic_address %>
   </p>
+
+  <p>
+    <strong>Owners:</strong>
+    <% if vet.owners.any? %>
+      <ul>
+        <% vet.owners.each do |owner| %>
+          <li>
+            <%= link_to owner.name, owner_path(owner) %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      No owners assigned
+    <% end %>
+</p>
 
 </div>

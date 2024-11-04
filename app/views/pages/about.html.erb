@@ -1,0 +1,31 @@
+<div class="container my-4">
+  <h1 class="text-center mb-4">About Us</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <p>
+        The data sources will be created by me in an excel sheet and exported to CSV files. These will be
+        accessed by the seeds.rb file and added to the database using models with preexisting associations.
+      </p>
+
+      <p>
+        The data is a mockup of a vet system with six tables in total, two of which will be join
+        tables for many-to-many relationships. The tables will include Cats, Dogs, Owners, and Vets.
+      </p>
+
+      <p>
+        Vets have a one-to-many association with owners (one vet, many owners). Cats and Dogs have many-to-
+        many relationships with Owners (an owner may have more than one pet, pets may have more than one owner).
+        These many-to-many associations will be managed with join tables, Cat_Ownership and Dog_Ownership. These
+        two tables will not be accessible from the nav bar, but will technically still have their own pages for
+        the sake of testing.
+      </p>
+
+      <p>
+        Cats and Dogs will have age and breed columns. Owners will have name and address columns.
+        Vets will have last name and location columns.
+        Cat and Dog Ownership tables will include the ids of the cat/dog and their owner.
+        Every table will have a unique id labelled "id".
+      </p>
+    </div>
+  </div>
+</div>

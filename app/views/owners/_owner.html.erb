@@ -9,9 +9,28 @@
     <%= owner.address %>
   </p>
 
-  <p>
-    <strong>Vet:</strong>
-    <%= owner.vet_id %>
+  <p><strong>Vet:</strong>
+    <% if owner.vet %>
+      <%= link_to owner.vet.name, vet_path(owner.vet) %>
+    <% else %>
+      No vet assigned
+    <% end %>
+  </p>
+
+  <p><strong>Cats:</strong>
+    <% if owner.cats.any? %>
+      <%= owner.cats.map { |cat| link_to cat.name, cat_path(cat) }.join(", ").html_safe %>
+    <% else %>
+      No cats owned
+    <% end %>
+  </p>
+
+  <p><strong>Dogs:</strong>
+    <% if owner.dogs.any? %>
+      <%= owner.dogs.map { |dog| link_to dog.name, dog_path(dog) }.join(", ").html_safe %>
+    <% else %>
+      No dogs owned
+    <% end %>
   </p>
 
 </div>

@@ -3,7 +3,7 @@ class CatsController < ApplicationController
 
   # GET /cats or /cats.json
   def index
-    @cats = Cat.all
+    @cats = Cat.includes(:owners).all
   end
 
   # GET /cats/1 or /cats/1.json

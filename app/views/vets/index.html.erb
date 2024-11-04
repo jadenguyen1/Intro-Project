@@ -1,16 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
 <% content_for :title, "Vets" %>
 
-<h1>Vets</h1>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Vets</h1>
 
-<div id="vets">
-  <% @vets.each do |vet| %>
-    <%= render vet %>
-    <p>
-      <%= link_to "Show this vet", vet %>
-    </p>
-  <% end %>
+  <div class="row">
+    <% @vets.each do |vet| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Name:</strong> <%= vet.name %></h5>
+            <p class="card-text"><strong>Clinic Address:</strong> <%= vet.clinic_address %></p>
+
+            <%= link_to "Show this vet", vet, class: "btn btn-outline-primary mt-3" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New vet", new_vet_path %>

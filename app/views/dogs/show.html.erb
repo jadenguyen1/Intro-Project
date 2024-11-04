@@ -1,10 +1,28 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @dog %>
+<div class="container my-4">
+  <h1 class="text-center mb-4"><%= @dog.name %></h1>
 
-<div>
-  <%= link_to "Edit this dog", edit_dog_path(@dog) %> |
-  <%= link_to "Back to dogs", dogs_path %>
+  <div id="<%= dom_id @dog %>" class="card">
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Breed:</strong> <%= @dog.breed %><br>
+      </p>
+      <p class="card-text">
+        <strong>Age:</strong> <%= @dog.age %><br>
+      </p>
+      <p class="card-text">
+        <strong>Owner(s):</strong>
+        <% if @dog.owners.any? %>
+          <%= @dog.owners.map { |owner| link_to owner.name, owner_path(owner), class: "text-decoration-none" }.join(", ").html_safe %>
+        <% else %>
+          No owners listed
+        <% end %>
+      </p>
+    </div>
+  </div>
 
-  <%= button_to "Destroy this dog", @dog, method: :delete %>
+  <div class="mt-3">
+    <%= link_to "Back to Dogs", dogs_path, class: "btn btn-secondary" %>
+  </div>
 </div>

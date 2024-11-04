@@ -9,12 +9,8 @@
 #   end
 require 'csv'
 
-CSV.foreach(Rails.root.join('db/cats.csv'), headers: true) do |row|
-  Cat.create!(row.to_hash)
-end
-
-CSV.foreach(Rails.root.join('db/dogs.csv'), headers: true) do |row|
-  Dog.create!(row.to_hash)
+CSV.foreach(Rails.root.join('db/vets.csv'), headers: true) do |row|
+  Vet.create!(row.to_hash)
 end
 
 CSV.foreach(Rails.root.join('db/owners.csv'), headers: true) do |row|

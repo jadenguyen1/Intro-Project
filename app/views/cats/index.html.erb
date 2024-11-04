@@ -1,16 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
 <% content_for :title, "Cats" %>
 
-<h1>Cats</h1>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Cats</h1>
 
-<div id="cats">
-  <% @cats.each do |cat| %>
-    <%= render cat %>
-    <p>
-      <%= link_to "Show this cat", cat %>
-    </p>
-  <% end %>
+  <div class="row">
+    <% @cats.each do |cat| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Name:</strong> <%= cat.name %></h5>
+            <p class="card-text"><strong>Breed:</strong> <%= cat.breed %></p>
+            <p class="card-text"><strong>Age:</strong> <%= cat.age %></p>
+
+            <p class="card-text">
+              <strong>Owner(s):</strong>
+              <% if cat.owners.any? %>
+                <%= cat.owners.map { |owner| link_to owner.name, owner_path(owner), class: "text-primary" }.join(", ").html_safe %>
+              <% else %>
+                <span class="text-muted">No owners listed</span>
+              <% end %>
+            </p>
+
+            <%= link_to "Show this cat", cat, class: "btn btn-outline-primary mt-3" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New cat", new_cat_path %>

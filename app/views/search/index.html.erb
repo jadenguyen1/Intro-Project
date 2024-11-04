@@ -1,0 +1,42 @@
+<div class="container my-4">
+  <h1 class="text-center mb-4">Search</h1>
+
+  <%= form_with url: search_path, method: :get, local: true, class: "row g-3 align-items-end" do |form| %>
+    <div class="col-md-6">
+      <%= form.label :query, "Search", class: "form-label" %>
+      <%= form.text_field :query, value: params[:query], class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :category, "Search in:", class: "form-label" %>
+      <%= form.select :category, options_for_select([['All', 'all'], ['Cats', 'cats'], ['Dogs', 'dogs'], ['Owners', 'owners'], ['Vets', 'vets']], params[:category]), class: "form-select" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= form.submit "Search", class: "btn btn-primary w-100" %>
+    </div>
+  <% end %>
+
+  <% if @results.any? %>
+    <div class="mt-4">
+      <h2>Results:</h2>
+      <ul class="list-group">
+        <% @results.each do |result| %>
+          <li class="list-group-item">
+            <% if result.is_a?(Cat) %>
+              <%= link_to result.name, cat_path(result), class: "text-decoration-none" %> <span class="badge bg-info">(Cat)</span>
+            <% elsif result.is_a?(Dog) %>
+              <%= link_to result.name, dog_path(result), class: "text-decoration-none" %> <span class="badge bg-success">(Dog)</span>
+            <% elsif result.is_a?(Owner) %>
+              <%= link_to result.name, owner_path(result), class: "text-decoration-none" %> <span class="badge bg-warning text-dark">(Owner)</span>
+            <% elsif result.is_a?(Vet) %>
+              <%= link_to result.name, vet_path(result), class: "text-decoration-none" %> <span class="badge bg-primary">(Vet)</span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+    <p class="text-muted mt-4">No results found.</p>
+  <% end %>
+</div>

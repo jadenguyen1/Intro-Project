@@ -14,4 +14,11 @@
     <%= cat.age %>
   </p>
 
+  <p><strong>Owner(s):</strong>
+    <% if cat.owners.any? %>
+        <%= cat.owners.map { |owner| link_to owner.name, owner_path(owner) }.join(", ").html_safe %>    <% else %>
+      No owners listed
+    <% end %>
+  </p>
+
 </div>

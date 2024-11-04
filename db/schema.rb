@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_203002) do
 
   create_table "vets", force: :cascade do |t|
     t.string "name"
-    t.string "address"
+    t.string "clinic_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
